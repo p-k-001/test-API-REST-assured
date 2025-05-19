@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 public class AddingUserTest {
 
-    User user1 = new User("Lucy Liu", "l.l@icanbreakit.eu", "user");
+    User user1 = new User("Lucy Liu", "l.l@icanbreakit.eu", 18, "user");
 
     //    private final ObjectMapper objectMapper = new ObjectMapper();
     @BeforeClass
@@ -73,6 +73,7 @@ public class AddingUserTest {
                 .body("[0].id", equalTo(1))
                 .body("[0].name", equalTo(user1.getName()))
                 .body("[0].email", equalTo(user1.getEmail()))
+                .body("[0].age", equalTo(user1.getAge()))
                 .body("[0].role", equalTo(user1.getRole()));
     }
 }

@@ -15,6 +15,7 @@ public class AddingUserNaiveTest {
 
         String name = "Lucy Liu";
         String email = "l.l@icanbreakit.eu";
+        int age = 18;
         String role = "user";
 
         // 1. set up - empty the db (delete all users)
@@ -29,10 +30,9 @@ public class AddingUserNaiveTest {
                .then()
                .body("", hasSize(0));
 
-
         // 3. add a user
         given().header("Content-Type", "application/json")
-               .body("{\"name\":\"" + name + "\",\"email\":\"" + email + "\",\"role\":\"" + role + "\"}")
+               .body("{\"name\":\"" + name + "\",\"email\":\"" + email + "\",\"age\": "+ age + ",\"role\":\"" + role + "\"}")
                .when()
                .post("/users")
                .then()
@@ -52,6 +52,7 @@ public class AddingUserNaiveTest {
                .body("[0].id", equalTo(1))
                .body("[0].name", equalTo(name))
                .body("[0].email", equalTo(email))
+               .body("[0].age", equalTo(age))
                .body("[0].role", equalTo(role));
 
 
